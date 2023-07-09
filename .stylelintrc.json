@@ -1,14 +1,6 @@
 {
-  "extends": [
-    "stylelint-config-rational-order",
-    "stylelint-config-standard-scss",
-    "stylelint-config-sass-guidelines"
-  ],
-  "plugins": [
-    "stylelint-no-nested-media",
-    "stylelint-group-selectors",
-    "stylelint-z-index-value-constraint"
-  ],
+  "extends": ["stylelint-config-rational-order", "stylelint-config-standard-scss", "stylelint-config-sass-guidelines"],
+  "plugins": ["stylelint-no-nested-media", "stylelint-group-selectors", "stylelint-z-index-value-constraint"],
   "rules": {
     "scss/dollar-variable-pattern": null,
     "pitcher/no-nested-media": true,

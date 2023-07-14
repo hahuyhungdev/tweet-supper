@@ -11,6 +11,10 @@ class UsersService {
     const result = await databaseService.users.insertOne(new User({ email, password }))
     return result
   }
+  async checkEmailExist(payload: { email: string }) {
+    const user = await databaseService.users.findOne({ email: payload.email })
+    return Boolean(user)
+  }
   async login(payload: { email: string; password: string }) {
     const { email, password } = payload
     const result = await databaseService.users.findOne({ email, password })

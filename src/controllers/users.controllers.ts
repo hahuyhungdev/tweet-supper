@@ -12,7 +12,7 @@ export const getUsersController = async (req: Request, res: Response) => {
 }
 
 export const loginController = async (req: Request, res: Response) => {
-  const { email, password } = req.body
+  const { name, email, password, confirm_password } = req.body
   try {
     const user = await usersService.login({ email, password })
     if (!user) {
@@ -27,6 +27,7 @@ export const registerController = async (req: Request, res: Response) => {
   const { email, password } = req.body
   try {
     const result = await usersService.register({ email, password })
+
     if (!result) {
       return res.status(401).json({ message: 'Invalid credentials' })
     }
@@ -39,7 +40,7 @@ export const deleteUserController = async (req: Request, res: Response) => {
   const { email } = req.body
   try {
     const result = await usersService.deleteUser({ email })
-    if (!result) {
+    if (!result || result.deletedCount === 0) {
       return res.status(401).json({ message: 'Invalid credentials' })
     }
     return res.status(200).json({ message: 'Delete successfully', data: result })

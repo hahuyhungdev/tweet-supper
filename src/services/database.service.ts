@@ -1,8 +1,7 @@
-import { Collection, Db, MongoClient } from 'mongodb'
-import dotenv from 'dotenv'
-import path from 'path'
 import User from '@/models/schemas/User.schema'
-dotenv.config({ path: path.resolve(__dirname, '../../.env.development') })
+import dotenv from 'dotenv'
+import { Collection, Db, MongoClient } from 'mongodb'
+dotenv.config()
 
 // Replace the following with your Atlas connection string
 const uri = `mongodb+srv://

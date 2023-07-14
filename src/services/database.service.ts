@@ -4,15 +4,14 @@ import { Collection, Db, MongoClient } from 'mongodb'
 dotenv.config()
 
 // Replace the following with your Atlas connection string
-const uri = `mongodb+srv://
-${process.env.DB_USERNAME}:${process.env.PASSWORD_DATABASE}@twitter.wfhhh29.mongodb.net/`
+const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.PASSWORD_DATABASE}@twitter.wfhhh29.mongodb.net/`
 
 class DatabaseService {
   private client: MongoClient
   private db: Db
   constructor() {
     this.client = new MongoClient(uri)
-    this.db = this.client.db(`${process.env.PASSWORD_DATABASE}`)
+    this.db = this.client.db(`${process.env.DB_NAME}`)
   }
   async connect() {
     try {

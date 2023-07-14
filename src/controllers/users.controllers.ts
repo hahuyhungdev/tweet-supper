@@ -1,6 +1,7 @@
-import databaseService from '@/services/database.service'
+import { IRegisterReqBody } from '@/models/requests/user.request'
 import usersService from '@/services/users.service'
 import { Request, Response } from 'express'
+import { ParamsDictionary } from 'express-serve-static-core'
 
 export const getUsersController = async (req: Request, res: Response) => {
   try {
@@ -11,8 +12,8 @@ export const getUsersController = async (req: Request, res: Response) => {
   }
 }
 
-export const loginController = async (req: Request, res: Response) => {
-  const { name, email, password, confirm_password } = req.body
+export const loginController = async (req: Request<ParamsDictionary, any, IRegisterReqBody>, res: Response) => {
+  const { email, password } = req.body
   try {
     const user = await usersService.login({ email, password })
     if (!user) {
@@ -23,10 +24,9 @@ export const loginController = async (req: Request, res: Response) => {
     return res.status(500).json({ message: 'Internal server error' })
   }
 }
-export const registerController = async (req: Request, res: Response) => {
-  const { email, password } = req.body
+export const registerController = async (req: Request<ParamsDictionary, any, IRegisterReqBody>, res: Response) => {
   try {
-    const result = await usersService.register({ email, password })
+    const result = await usersService.register(req.body)
 
     if (!result) {
       return res.status(401).json({ message: 'Invalid credentials' })

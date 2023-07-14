@@ -3,14 +3,7 @@ import databaseService from '@/services/database.service'
 import userRouter from './routes/user.routes'
 const app = express()
 const port = 2503
-databaseService
-  .connect()
-  .then(() => {
-    console.log('Connected to MongoDB')
-  })
-  .catch((error) => {
-    console.log('error', error)
-  })
+databaseService.connect()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
